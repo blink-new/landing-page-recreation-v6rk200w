@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Mio AI Design Tokens */
+    --brand-accent: 262 83% 70%;  /* #9A66FF neon lavender */
+    --brand-accent-hover: 262 83% 78%;  /* +8% lighter */
+    --success: 158 64% 52%;  /* #3DDC97 */
+    --warning: 43 89% 60%;   /* #F4B740 */
+    --error: 0 84% 67%;      /* #FF5C5C */
+    
+    /* Surface colors */
+    --surface-00: 0 0% 0%;           /* pure black #000 */
+    --surface-01: 0 0% 7%;           /* #121212 panels */
+    --surface-stroke: 0 0% 100% / 0.06;  /* inner stroke */
+    
+    /* Text colors */
+    --text-high: 0 0% 100%;          /* #FFFFFF */
+    --text-med: 0 0% 100% / 0.72;    /* rgba(255,255,255,0.72) */
+    --text-low: 0 0% 100% / 0.45;    /* rgba(255,255,255,0.45) */
+    
+    /* Shadow */
+    --shadow-accent: 0 8px 24px -8px hsl(262deg 83% 70% / 45%);
+    
+    /* Standard shadcn tokens for compatibility */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 262 83% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 7%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 0 0% 100% / 0.45;
+    --accent: 0 0% 7%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 67%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.06;
+    --input: 0 0% 7%;
+    --ring: 262 83% 70%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-surface-00 text-text-high;
+
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .surface-00 {
+    background-color: hsl(var(--surface-00));
+  }
+  
+  .surface-01 {
+    background-color: hsl(var(--surface-01));
+    border: 1px solid hsl(var(--surface-stroke));
+    border-radius: 12px;
+  }
+  
+  .text-high {
+    color: hsl(var(--text-high));
+  }
+  
+  .text-med {
+    color: hsl(var(--text-med));
+  }
+  
+  .text-low {
+    color: hsl(var(--text-low));
+  }
+  
+  .brand-accent {
+    color: hsl(var(--brand-accent));
+  }
+  
+  .bg-brand-accent {
+    background-color: hsl(var(--brand-accent));
+  }
+  
+  .bg-brand-accent-hover {
+    background-color: hsl(var(--brand-accent-hover));
+  }
+  
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+  
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(0deg 0% 100% / 6%) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0deg 0% 100% / 6%) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .motion-curve {
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    transition-duration: 250ms;
+  }
+
+  /* Apple-inspired glass morphism */
+  .glass-card {
+    background: rgb(255 255 255 / 5%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 20px;
+  }
+
+  /* Enhanced shadows */
+  .shadow-soft {
+    box-shadow: 0 4px 20px rgb(0 0 0 / 15%);
+  }
+
+  .shadow-medium {
+    box-shadow: 0 8px 30px rgb(0 0 0 / 20%);
+  }
+
+  .shadow-strong {
+    box-shadow: 0 20px 60px rgb(0 0 0 / 30%);
+  }
+
+  /* Sidebar specific styles */
+  .sidebar-flyout {
+    box-shadow: 0 10px 40px rgb(0 0 0 / 25%);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Rail interaction styles - New behavior */
+  .scrollbar-width-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-width-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Z-index layers */
+  .z-sidebar {
+    z-index: 40;
+  }
+
+  .z-sidebar-flyout {
+    z-index: 50;
+  }
+
+  .z-header {
+    z-index: 30;
+  }
+
+  .z-dropdown {
+    z-index: 50;
+  }
+
+  .z-tooltip {
+    z-index: 60;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(262deg 83% 78%));
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 40%; }
+  50% { opacity: 80%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes neural-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 70%;
+  }
+
+  50% { 
+    transform: scale(1.05);
+    opacity: 100%;
+  }
+}
+
+@keyframes data-flow {
+  0% { 
+    transform: translateX(-20px);
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 100%;
+  }
+
+  100% { 
+    transform: translateX(20px);
+    opacity: 0%;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { 
+    background-position: 0% 50%;
+  }
+
+  50% { 
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-neural-pulse {
+  animation: neural-pulse 2.5s ease-in-out infinite;
+}
+
+.animate-data-flow {
+  animation: data-flow 3s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--surface-00));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--surface-01));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--brand-accent));
+}
